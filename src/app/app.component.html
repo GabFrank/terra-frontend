@@ -2,21 +2,23 @@
   <div class="content-container">
       <nav class="sidenav">
           <section class="sidenav-content">
-              <a href="..." class="nav-link active">
-                  Nav Element 1
+              <a routerLink="/" class="nav-link">
+                <label>TERRA</label>
               </a>
               <a href="..." class="nav-link">
-                  Nav Element 2
+                  Acciones
               </a>
-              <section class="nav-group collapsible">
-                  <input id="tabexample1" type="checkbox">
-                  <label for="tabexample1">Collapsible Nav Element</label>
+              <section class="nav-group collapsible" routerLinkActive="active">
+                  <input id="cadastros" type="checkbox" checked>
+                  <label for="cadastros">Registrar</label>
                   <ul class="nav-list">
-                      <li><a class="nav-link">Link 1</a></li>
-                      <li><a class="nav-link">Link 2</a></li>
+                      <li><a class="nav-link" routerLink="cadastros/clientes">Clientes</a></li>
+                      <li><a class="nav-link">Lotes</a></li>
+                      <li><a class="nav-link">Loteamientos</a></li>
+                      <li><a class="nav-link">Propietarios</a></li>
                   </ul>
               </section>
-              <section class="nav-group">
+              <!-- <section class="nav-group">
                   <input id="tabexample2" type="checkbox">
                   <label for="tabexample2">Default Nav Element</label>
                   <ul class="nav-list">
@@ -27,12 +29,11 @@
                       <li><a class="nav-link">Link 5</a></li>
                       <li><a class="nav-link">Link 6</a></li>
                   </ul>
-              </section>
+              </section> -->
           </section>
       </nav>
-      <div class="content-area">
-          ...
+      <div class="content-area" style="padding: 0rem;">
+        <router-outlet></router-outlet>
       </div>
   </div>
 </div>
-<router-outlet></router-outlet>

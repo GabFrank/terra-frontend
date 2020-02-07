@@ -4,13 +4,17 @@ import { CommonModule } from '@angular/common';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
 import { ClientesFormComponent } from './clientes-form/clientes-form.component';
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
   declarations: [ClientesListComponent, ClientesFormComponent],
   imports: [
     CommonModule,
-    ClientesRoutingModule
+    ClientesRoutingModule,
+    ClarityModule
+
   ]
 })
 export class ClientesModule { }
