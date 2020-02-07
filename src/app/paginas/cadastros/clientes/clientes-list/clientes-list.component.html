@@ -13,6 +13,24 @@
         </a>
     </div> -->
   </header>
-  <p>clientes-list works!</p>
+  <div class="list-container">
+    <clr-datagrid>
+      <clr-dg-column>Cod. Cliente</clr-dg-column>
+      <clr-dg-column>Nombre</clr-dg-column>
+      <clr-dg-column>Apellido</clr-dg-column>
+      <clr-dg-column>CI</clr-dg-column>
+      <clr-dg-column>Teléfono</clr-dg-column>
+
+      <clr-dg-row *ngFor="let cliente of clientes">
+          <clr-dg-cell>{{cliente.id}}</clr-dg-cell>
+          <clr-dg-cell>{{cliente.nombre}}</clr-dg-cell>
+          <clr-dg-cell>{{cliente.apellido}}</clr-dg-cell>
+          <clr-dg-cell>{{cliente.ci}}</clr-dg-cell>
+          <clr-dg-cell>{{cliente.telefono}}</clr-dg-cell>
+      </clr-dg-row>
+
+      <clr-dg-footer>{{clientes.length}} clientes</clr-dg-footer>
+  </clr-datagrid>
+  </div>
 </div>
 

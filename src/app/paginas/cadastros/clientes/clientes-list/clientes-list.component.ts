@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Clientes } from '../clientes';
+import { BackendService } from 'src/app/paginas/commons/backend/backend.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-clientes-list',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesListComponent implements OnInit {
 
-  constructor() { }
+  clientes: Clientes[] = [];
+
+  constructor(
+    private backend: BackendService
+  ) { }
 
   ngOnInit() {
+    this.backend.getAll().subscribe
+    (
+      clientes => this.clientes = clientes,
+      error => alert("Error al cargar la lista")
+    )
   }
 
 }
