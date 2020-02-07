@@ -127,5 +127,10 @@
       }
     }
   },
-  "defaultProject": "terra"
+  "defaultProject": "terra",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
