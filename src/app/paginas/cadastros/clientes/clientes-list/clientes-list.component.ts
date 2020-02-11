@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Clientes } from '../clientes';
-import { BackendService } from 'src/app/paginas/commons/backend/backend.service';
+import { BackendService } from 'src/app/paginas/commons/backend/backend-cliente.service';
 import { Observable } from 'rxjs';
 
 @Component({

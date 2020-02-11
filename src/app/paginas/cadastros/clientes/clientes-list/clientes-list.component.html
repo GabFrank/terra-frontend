@@ -1,20 +1,10 @@
 <div>
-  <header class="header-6">
-    <div class="branding" routerLink="/" style="display: flex;align-items: center;">
-        <label>CLIENTES</label>
-    </div>
-    <!-- <div class="header-nav">
-        <a routerLink="/cadastros" class="nav-link nav-text" routerLinkActive="active">Registrar</a>
-        <a routerLink="/acciones" class="nav-link nav-text" routerLinkActive="active">Acciones</a>
-    </div>
-    <div class="header-actions">
-        <a href="javascript://" class="nav-link nav-icon" aria-label="settings">
-            <clr-icon shape="cog"></clr-icon>
-        </a>
-    </div> -->
-  </header>
+  <div class="header header-contenido">
+   <h3 class="contenido">Lista de Clientes</h3>
+  </div>
+
   <div class="list-container">
-    <clr-datagrid>
+    <clr-datagrid class="data-grid">
       <clr-dg-column>Cod. Cliente</clr-dg-column>
       <clr-dg-column>Nombre</clr-dg-column>
       <clr-dg-column>Apellido</clr-dg-column>
@@ -22,15 +12,14 @@
       <clr-dg-column>Teléfono</clr-dg-column>
 
       <clr-dg-row *ngFor="let cliente of clientes">
-          <clr-dg-cell>{{cliente.id}}</clr-dg-cell>
-          <clr-dg-cell>{{cliente.nombre}}</clr-dg-cell>
-          <clr-dg-cell>{{cliente.apellido}}</clr-dg-cell>
-          <clr-dg-cell>{{cliente.ci}}</clr-dg-cell>
-          <clr-dg-cell>{{cliente.telefono}}</clr-dg-cell>
+        <clr-dg-cell>{{cliente.id}}</clr-dg-cell>
+        <clr-dg-cell>{{cliente.nombre}}</clr-dg-cell>
+        <clr-dg-cell>{{cliente.apellido}}</clr-dg-cell>
+        <clr-dg-cell>{{cliente.ci}}</clr-dg-cell>
+        <clr-dg-cell>{{cliente.telefono}}</clr-dg-cell>
       </clr-dg-row>
 
       <clr-dg-footer>{{clientes.length}} clientes</clr-dg-footer>
-  </clr-datagrid>
+    </clr-datagrid>
   </div>
 </div>
-

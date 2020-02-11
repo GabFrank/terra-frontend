@@ -1,0 +1,14 @@
+
+.contenido {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.header-contenido {
+  display: block;
+}
+
+

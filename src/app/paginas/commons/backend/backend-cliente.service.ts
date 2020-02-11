@@ -12,21 +12,21 @@ export class BackendService {
 
   readonly apiUrlTemplates = environment.api;
 
-  private apiPath = `${this.apiUrlTemplates}/api/clientes`;
+  private apiPathCliente = `${this.apiUrlTemplates}/api/clientes`;
 
   constructor(
     private http: HttpClient
   ) { }
 
   getAll(): Observable<Clientes[]>{
-    return this.http.get(this.apiPath).pipe(
+    return this.http.get(this.apiPathCliente).pipe(
       catchError(this.handleError),
       map(this.jsonDataToClientes)
     )
   }
 
   getById(id:number): Observable<Clientes> {
-    const url = `${this.apiPath}/${id}`;
+    const url = `${this.apiPathCliente}/${id}`;
     return this.http.get(url).pipe(
       catchError(this.handleError),
       map(this.jsonDataToCliente)
@@ -34,14 +34,14 @@ export class BackendService {
   }
 
   create(cliente:Clientes): Observable<any> {
-    return this.http.post(this.apiPath, cliente).pipe(
+    return this.http.post(this.apiPathCliente, cliente).pipe(
       catchError(this.handleError),
       map(this.jsonDataToCliente)
     );
   }
 
   update(cliente:Clientes): Observable<any> {
-    const url = `${this.apiPath}/${cliente.id}`;
+    const url = `${this.apiPathCliente}/${cliente.id}`;
     return this.http.put(url, cliente).pipe(
       catchError(this.handleError),
       map(() => cliente)
@@ -49,7 +49,7 @@ export class BackendService {
   }
 
   delete(id:number): Observable<any> {
-    const url = `${this.apiPath}/deleteById/${id}`;
+    const url = `${this.apiPathCliente}/deleteById/${id}`;
     return this.http.delete(url).pipe(
       catchError(this.handleError),
       map(() => null)
