@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   collapsed = false;
+  open = true;
   title = 'terra';
 }

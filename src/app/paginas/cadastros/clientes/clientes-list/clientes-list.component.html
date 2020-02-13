@@ -1,6 +1,6 @@
 <div>
   <div class="header header-contenido">
-   <h3 class="contenido">Lista de Clientes</h3>
+    <h3 class="contenido">Lista de Clientes</h3>
   </div>
 
   <div class="list-container">
@@ -11,7 +11,7 @@
       <clr-dg-column>CI</clr-dg-column>
       <clr-dg-column>Teléfono</clr-dg-column>
 
-      <clr-dg-row *ngFor="let cliente of clientes">
+      <clr-dg-row *ngFor="let cliente of clientes" (click)="onClick($event,cliente)">
         <clr-dg-cell>{{cliente.id}}</clr-dg-cell>
         <clr-dg-cell>{{cliente.nombre}}</clr-dg-cell>
         <clr-dg-cell>{{cliente.apellido}}</clr-dg-cell>
@@ -23,3 +23,75 @@
     </clr-datagrid>
   </div>
 </div>
+
+<clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
+  <h4 class="modal-title">Cliente</h4>
+  <div class="modal-body">
+    <form clrForm class="clr-form-compact">
+      <div class="clr-form-control clr-row">
+        <clr-input-container class="clr-col-12 clr-col-md-4">
+          <label for="nombre" class="clr-col-12">Nombre</label>
+          <input id="nombre" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.nombre"
+            #nombre="ngModel" name="nombre" [disabled]="!editable" />
+        </clr-input-container>
+        <clr-input-container class="clr-col-12 clr-col-md-4">
+          <label for="nombre" class="clr-col-12">Apellido</label>
+          <input id="nombre" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.apellido"
+            #apellido="ngModel" name="apellido" [disabled]="!editable" />
+        </clr-input-container>
+        <clr-input-container class="clr-col-12 clr-col-md-4">
+          <label for="ci" class="clr-col-12">CI</label>
+          <input id="ci" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.ci" #ci="ngModel"
+            name="ci" [disabled]="!editable" />
+        </clr-input-container>
+      </div>
+      <div class="clr-form-control clr-row">
+        <clr-input-container class="clr-col-12 clr-col-md-4">
+          <label for="telefono" class="clr-col-12">Teléfono 1</label>
+          <input id="telefono" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.telefono"
+            #telefono="ngModel" name="telefono" [disabled]="!editable" />
+        </clr-input-container>
+        <clr-input-container class="clr-col-12 clr-col-md-4">
+          <label for="telefono2" class="clr-col-12">Teléfono 2</label>
+          <input id="telefono2" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.telefono2"
+            #telefono2="ngModel" name="telefono2" [disabled]="!editable" />
+        </clr-input-container>
+        <clr-input-container class="clr-col-12 clr-col-md-4">
+          <label for="fecNac" class="clr-col-12">Nascimiento</label>
+          <input id="fecNac" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.fecNac"
+            #fecNac="ngModel" name="fecNac" [disabled]="!editable" />
+        </clr-input-container>
+      </div>
+      <div class="clr-form-control clr-row">
+        <clr-input-container class="clr-col-12 clr-col-md-4">
+          <label for="email" class="clr-col-12">Email</label>
+          <input id="email" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.email" #email="ngModel"
+            name="email" [disabled]="!editable" />
+        </clr-input-container>
+        <clr-input-container class="clr-col-12 clr-col-md-4">
+          <label for="direccion" class="clr-col-12">Dirección</label>
+          <input id="direccion" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.direccion"
+            #direccion="ngModel" name="direccion" [disabled]="!editable" />
+        </clr-input-container>
+        <clr-input-container class="clr-col-12 clr-col-md-4">
+          <label for="ciudad" class="clr-col-12">Ciudad</label>
+          <input id="ciudad" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.ciudad"
+            #ciudad="ngModel" name="ciudad" [disabled]="!editable" />
+        </clr-input-container>
+
+      </div>
+    </form>
+    <clr-alert [clrAlertClosed]="isAlertClosed" [clrAlertType]="alertType">
+      <clr-alert-item>
+          <span class="alert-text">
+              {{alertText}}
+          </span>
+      </clr-alert-item>
+    </clr-alert>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="onCancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="onEditar()">{{editSaveBtn}}</button>
+  </div>
+
+</clr-modal>
