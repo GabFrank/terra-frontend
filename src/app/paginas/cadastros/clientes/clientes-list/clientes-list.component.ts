@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, ElementRef, ViewChild, Input } from '@angular/core';
 import { Clientes } from '../clientes';
 import { BackendService } from 'src/app/paginas/commons/backend/backend-cliente.service';
-import { Observable } from 'rxjs';
-
+import { SimpleChanges } from '@angular/core';
+import { ListRowClickEvent } from 'src/app/components/list/list.types';
+import { FormDataChange } from 'src/app/components/form/form.types';
+import { Menu } from 'src/app/components/menu/menu';
 
 @Component({
   selector: 'app-clientes-list',
@@ -11,75 +13,37 @@ import { Observable } from 'rxjs';
 })
 export class ClientesListComponent implements OnInit {
 
+  @ViewChild('nombre', {static: false}) nombreEl: ElementRef;
+
+  @Input() data;
+
   clientes: Clientes[] = [];
-  opened: boolean = false;
+  columnas: string[] = ['ID', 'Nombre', 'Apellido', 'Teléfono'];
+  campos: string[] = ['id', 'nombre', 'apellido', 'telefono'];
+  opened = false;
   selectedCliente = new Clientes();
-  editable: boolean = false;
-  editSaveBtn: string = "Editar";
-  isAlertClosed: boolean = true;
-  alertType = "";
-  alertText = "";
+  editable = false;
 
   constructor(
     private backend: BackendService
   ) { }
 
   ngOnInit() {
-    this.backend.getAll().subscribe
-    (
-      clientes => this.clientes = clientes,
-      error => alert("Error al cargar la lista")
-    )
+
   }
 
-  onClick(e, cliente){
-    this.opened = true;
-    this.selectedCliente = cliente;
-    console.log(this.selectedCliente)
+  onRowClicked(e: ListRowClickEvent){
+    this.opened = e.isRowClicked;
+    this.selectedCliente = e.entity as Clientes;
   }
 
-  onEditar(){
-    if(!this.editable){
-      this.editSaveBtn = "Guardar";
-      this.editable = true;
-    } else {
-      this.onSave();
-      this.editSaveBtn = "Editar"
-      this.editable = false;
-    }
+  onDataChange(e: FormDataChange){
+    this.opened = e.opened;
   }
 
-  onSave(){
-    this.backend.create(this.selectedCliente).subscribe(
-      (val) => {
-          this.alertType = 'success';
-          this.alertText = "Guardado con éxito";
-          this.isAlertClosed = false;
-          setTimeout(()=>{
-            this.isAlertClosed = true;
-        }, 2000);
-      },
-      response => {
-        this.alertType = 'danger';
-        this.alertText = "Problema al guardar";
-        this.isAlertClosed = false;
-        setTimeout(()=>{
-          this.isAlertClosed = true;
-      }, 5000);
-      },
-      () => {
-          console.log("The POST observable is now completed.");
-      });
-  }
-
-  onCancel(){
-    this.opened = false;
-    if(this.editable){
-      this.editable = false;
-      this.editSaveBtn = "Editar"
-    } else {
-      this.editSaveBtn = "Editar"
-    }
+  onStatusChange(status: boolean){
+    this.editable = status;
+    console.log(status);
   }
 
 }

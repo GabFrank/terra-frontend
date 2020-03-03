@@ -1,0 +1,41 @@
+
+.contenido {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  padding-top: 20px;
+  margin-top: 0px;
+}
+
+.header-contenido {
+display: block;
+}
+
+.drop-down-container {
+display: table;
+height: 100%;
+}
+
+.drop-down-element {
+display: table-cell;
+text-align: center;
+vertical-align: middle;
+}
+
+.clr-row {
+margin-top: 0px;
+padding-bottom: 10px;
+}
+
+input {
+width: 100%;
+}
+
+clr-modal {
+max-height: 500px;
+}
+
+input[type="text"][disabled] {
+color: rgb(255, 255, 255);
+}

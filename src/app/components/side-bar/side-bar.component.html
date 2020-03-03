@@ -1,0 +1,52 @@
+<clr-vertical-nav-group routerLinkActive="active">
+  <a routerLink="./mapa" hidden aria-hidden="true">
+  </a>
+  <clr-icon shape="map" clrVerticalNavIcon></clr-icon>
+  Mapas
+  <clr-vertical-nav-group-children *clrIfExpanded="false">
+    <a clrVerticalNavLink routerLink="./mapa/loteamientos" routerLinkActive="active">
+      Loteamientos
+    </a>
+    <a clrVerticalNavLink routerLink="./mapa/ciudades" routerLinkActive="active">
+      Ciudades
+    </a>
+  </clr-vertical-nav-group-children>
+</clr-vertical-nav-group>
+<clr-vertical-nav-group routerLinkActive="active">
+  <a routerLink="./cadastros" hidden aria-hidden="true">
+  </a>
+  <clr-icon shape="pencil" clrVerticalNavIcon></clr-icon>
+  Registros
+  <clr-vertical-nav-group-children *clrIfExpanded>
+    <a clrVerticalNavLink id="clientes" #clientes routerLink="./cadastros/clientes" routerLinkActive="active" (click)="onClick($event)">
+      Clientes
+    </a>
+    <a clrVerticalNavLink routerLink="./cadastros/loteamientos" routerLinkActive="active" (click)="onClick($event)">
+      Loteamientos
+    </a>
+    <a clrVerticalNavLink routerLink="./cadastros/lotes" routerLinkActive="active">
+      Lotes
+    </a>
+    <a clrVerticalNavLink routerLink="./cadastros/proprietarios" routerLinkActive="active">
+      Propietarios
+    </a>
+  </clr-vertical-nav-group-children>
+</clr-vertical-nav-group>
+<clr-vertical-nav-group routerLinkActive="active">
+  <a routerLink="./venta" hidden aria-hidden="true">
+  </a>
+  <clr-icon shape="store" clrVerticalNavIcon></clr-icon>
+  Ventas
+  <!-- <clr-vertical-nav-group-children *clrIfExpanded>
+    <a clrVerticalNavLink routerLink="./venta/pikachu" routerLinkActive="active">
+      Pikachu
+    </a>
+    <a clrVerticalNavLink routerLink="./electric/raichu" routerLinkActive="active">
+      Raichu
+    </a>
+  </clr-vertical-nav-group-children> -->
+</clr-vertical-nav-group>
+<a clrVerticalNavLink routerLinkActive="active" routerLink="./credit">
+  <clr-icon shape="certificate" clrVerticalNavIcon></clr-icon>
+  Otros
+</a>

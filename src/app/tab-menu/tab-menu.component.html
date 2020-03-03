@@ -1,0 +1,12 @@
+<clr-tabs>
+  <clr-tab id="{{tab.id}}" *ngFor="let tab of tabList" >
+    <button clrTabLink>
+      {{tab.title}}
+      <clr-icon shape="window-close" (click)="closeTab($event)"></clr-icon>
+    </button>
+    <clr-tab-content *clrIfActive="tab.active">
+      <app-tab-content [tab]="tab"></app-tab-content>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>
+

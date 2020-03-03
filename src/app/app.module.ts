@@ -7,19 +7,27 @@ import { AppComponent } from './app.component';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { ComponentsModule } from './components/components.module';
+import { TabService } from './tab-menu/tab.service';
+import { TabMenuModule } from './tab-menu/tab-menu.module';
+import { ContentContainerDirective } from './tab-menu/content-container.directive';
+import { ClientesListComponent } from './paginas/cadastros/clientes/clientes-list/clientes-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContentContainerDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ClarityModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ComponentsModule,
+    TabMenuModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ClientesListComponent]
 })
 export class AppModule { }

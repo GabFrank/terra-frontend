@@ -1,97 +1,63 @@
-<div>
-  <div class="header header-contenido">
-    <h3 class="contenido">Lista de Clientes</h3>
-  </div>
+<app-list titulo="Clientes" [columnList]="columnas" resources="clientes" [fieldList]="campos" (rowClicked)="onRowClicked($event)"></app-list>
 
-  <div class="list-container">
-    <clr-datagrid class="data-grid">
-      <clr-dg-column>Cod. Cliente</clr-dg-column>
-      <clr-dg-column>Nombre</clr-dg-column>
-      <clr-dg-column>Apellido</clr-dg-column>
-      <clr-dg-column>CI</clr-dg-column>
-      <clr-dg-column>Teléfono</clr-dg-column>
-
-      <clr-dg-row *ngFor="let cliente of clientes" (click)="onClick($event,cliente)">
-        <clr-dg-cell>{{cliente.id}}</clr-dg-cell>
-        <clr-dg-cell>{{cliente.nombre}}</clr-dg-cell>
-        <clr-dg-cell>{{cliente.apellido}}</clr-dg-cell>
-        <clr-dg-cell>{{cliente.ci}}</clr-dg-cell>
-        <clr-dg-cell>{{cliente.telefono}}</clr-dg-cell>
-      </clr-dg-row>
-
-      <clr-dg-footer>{{clientes.length}} clientes</clr-dg-footer>
-    </clr-datagrid>
-  </div>
-</div>
-
-<clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
-  <h4 class="modal-title">Cliente</h4>
-  <div class="modal-body">
+<app-form [opened]="opened" [entity]="selectedCliente" (dataChange)="onDataChange($event)" (statusChange)="onStatusChange($event)">
+  <ng-template #formTemplate let-entity>
     <form clrForm class="clr-form-compact">
       <div class="clr-form-control clr-row">
         <clr-input-container class="clr-col-12 clr-col-md-4">
           <label for="nombre" class="clr-col-12">Nombre</label>
-          <input id="nombre" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.nombre"
+          <input id="nombre" class="clr-col-12" clrInput type="text" [(ngModel)]="entity.nombre"
             #nombre="ngModel" name="nombre" [disabled]="!editable" />
         </clr-input-container>
         <clr-input-container class="clr-col-12 clr-col-md-4">
-          <label for="nombre" class="clr-col-12">Apellido</label>
-          <input id="nombre" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.apellido"
+          <label for="apellido" class="clr-col-12">Apellido</label>
+          <input id="apellido" class="clr-col-12" clrInput type="text" [(ngModel)]="entity.apellido"
             #apellido="ngModel" name="apellido" [disabled]="!editable" />
         </clr-input-container>
         <clr-input-container class="clr-col-12 clr-col-md-4">
           <label for="ci" class="clr-col-12">CI</label>
-          <input id="ci" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.ci" #ci="ngModel"
+          <input id="ci" class="clr-col-12" clrInput type="text" [(ngModel)]="entity.ci" #ci="ngModel"
             name="ci" [disabled]="!editable" />
         </clr-input-container>
       </div>
       <div class="clr-form-control clr-row">
         <clr-input-container class="clr-col-12 clr-col-md-4">
           <label for="telefono" class="clr-col-12">Teléfono 1</label>
-          <input id="telefono" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.telefono"
+          <input id="telefono" class="clr-col-12" clrInput type="text" [(ngModel)]="entity.telefono"
             #telefono="ngModel" name="telefono" [disabled]="!editable" />
         </clr-input-container>
         <clr-input-container class="clr-col-12 clr-col-md-4">
           <label for="telefono2" class="clr-col-12">Teléfono 2</label>
-          <input id="telefono2" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.telefono2"
+          <input id="telefono2" class="clr-col-12" clrInput type="text" [(ngModel)]="entity.telefono2"
             #telefono2="ngModel" name="telefono2" [disabled]="!editable" />
         </clr-input-container>
         <clr-input-container class="clr-col-12 clr-col-md-4">
           <label for="fecNac" class="clr-col-12">Nascimiento</label>
-          <input id="fecNac" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.fecNac"
+          <input id="fecNac" class="clr-col-12" clrInput type="text" [(ngModel)]="entity.fecNac"
             #fecNac="ngModel" name="fecNac" [disabled]="!editable" />
         </clr-input-container>
       </div>
       <div class="clr-form-control clr-row">
         <clr-input-container class="clr-col-12 clr-col-md-4">
           <label for="email" class="clr-col-12">Email</label>
-          <input id="email" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.email" #email="ngModel"
+          <input id="email" class="clr-col-12" clrInput type="text" [(ngModel)]="entity.email" #email="ngModel"
             name="email" [disabled]="!editable" />
         </clr-input-container>
         <clr-input-container class="clr-col-12 clr-col-md-4">
           <label for="direccion" class="clr-col-12">Dirección</label>
-          <input id="direccion" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.direccion"
+          <input id="direccion" class="clr-col-12" clrInput type="text" [(ngModel)]="entity.direccion"
             #direccion="ngModel" name="direccion" [disabled]="!editable" />
         </clr-input-container>
         <clr-input-container class="clr-col-12 clr-col-md-4">
           <label for="ciudad" class="clr-col-12">Ciudad</label>
-          <input id="ciudad" class="clr-col-12" clrInput type="text" [(ngModel)]="selectedCliente.ciudad"
+          <input id="ciudad" class="clr-col-12" clrInput type="text" [(ngModel)]="entity.ciudad"
             #ciudad="ngModel" name="ciudad" [disabled]="!editable" />
         </clr-input-container>
 
       </div>
     </form>
-    <clr-alert [clrAlertClosed]="isAlertClosed" [clrAlertType]="alertType">
-      <clr-alert-item>
-          <span class="alert-text">
-              {{alertText}}
-          </span>
-      </clr-alert-item>
-    </clr-alert>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="onCancel()">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="onEditar()">{{editSaveBtn}}</button>
-  </div>
+  </ng-template>
+</app-form>
 
-</clr-modal>
+
+

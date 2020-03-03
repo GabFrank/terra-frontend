@@ -1,0 +1,18 @@
+<div>
+  <div class="header header-contenido">
+    <h3 class="contenido">{{titulo}}</h3>
+  </div>
+
+  <clr-datagrid>
+      <clr-dg-column *ngFor="let itemColumn of columnList">{{itemColumn}}</clr-dg-column>
+
+
+    <clr-dg-row *ngFor="let entity of entities" (click)="onTableClick($event,entity)">
+        <clr-dg-cell *ngFor="let field of fieldList">{{entity[field]}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer *ngIf="entities!==undefined">{{entities.length}} {{titulo}}</clr-dg-footer>
+</clr-datagrid>
+
+</div>
+

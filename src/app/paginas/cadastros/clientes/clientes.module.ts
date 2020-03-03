@@ -7,6 +7,7 @@ import { ClientesFormComponent } from './clientes-form/clientes-form.component';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
@@ -16,8 +17,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ClientesRoutingModule,
     ClarityModule,
-    FormsModule
-
+    FormsModule,
+    ComponentsModule
   ]
 })
 export class ClientesModule { }

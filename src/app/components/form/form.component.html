@@ -1,0 +1,20 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false"
+  (clrModalOpenChange)="onChangeModal($event)">
+  <h4 class="modal-title">{{titulo}}</h4>
+  <div class="modal-body">
+    <ng-container [ngTemplateOutlet]="formTemplateRef" [ngTemplateOutletContext]="{$implicit:data}"></ng-container>
+    <clr-alert [clrAlertClosed]="isAlertClosed" [clrAlertType]="alertType">
+      <clr-alert-item>
+        <span class="alert-text">
+          {{alertText}}
+        </span>
+      </clr-alert-item>
+    </clr-alert>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="onCancel()">Cancel</button>
+    <button *ngIf="!editable" type="button" type="submit" class="btn btn-primary" (click)="onEditar()">Editar</button>
+    <button *ngIf="!!editable" type="button" type="submit" class="btn btn-primary" (click)="onGuardar()">Guardar</button>
+  </div>
+
+</clr-modal>
